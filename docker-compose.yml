@@ -1,0 +1,31 @@
+version: "3.7"
+
+# vars
+x-env:
+  # default arguments which used almost for every service
+  argv:
+    &argv
+    UID: ${DOCKER_UID}
+    GID: ${DOCKER_GID}
+
+x-volumes:
+  - &res_root "./res:/home/patcher/res"
+
+
+# services
+services:
+
+  patcher:
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+
+    build:
+      context: "./"
+      dockerfile: "${DOCKER_CONF_PATH}/patcher/Dockerfile"
+      args:
+        <<: *argv
+
+    volumes:
+      - *res_root
+
+    security_opt:
+      - no-new-privileges

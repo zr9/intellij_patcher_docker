@@ -1,0 +1,3 @@
+[submodule "intellij_patcher"]
+	path = intellij_patcher
+	url = https://github.com/zr9/intellij_patcher
